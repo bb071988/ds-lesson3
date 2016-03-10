@@ -6,12 +6,10 @@ import re
 import os.path as osp # makes it so we can substitute forward slash for backslash minimizing character escape headaches
 import sys
 
-mypath = 'C:/Users/bob071988/thinkful/projects/ds-lesson3/'
-filename = 'LoanStats3b.csv'
 
-
-def get_data():
+def get_data(mypath, filename, url):
 	# See if we have the file locally.  If so use it.  If not stop
+	# https://resources.lendingclub.com/LoanStats3b.csv.zip - This is the URL - not going to mess with zipfile import for this exercise.
 	try: 
 		df = pd.read_csv(osp.normpath(mypath + filename), header=1, low_memory=False) #  index_col=0 - This index statement causes an error when we try to read saved file for some reason?
 		return df
@@ -19,7 +17,35 @@ def get_data():
 		print("Sorry - Can't find the input file on disk or online or couldn't write it once found")
 		sys.exit(1) # stop processing 
     
-def clean_data(raw_data):
+def clean_data(df):
+	return df
+
+def enhance_data(df):
+	return df
+
+def analyze_it():
+	# Set up constants for file IO
+	mypath = 'C:/Users/bob071988/thinkful/projects/ds-lesson3/'
+	filename = 'LoanStats3b.csv'
+	url = ''
+	# Execute the functions to prepare the df
+	df = get_data(mypath, filename, url)
+	df = clean_data(df)
+	df = enhance_data(df)
+	# create the models
+	## TBD
+	# return df and models
+	return(df)
+
+	   
+def main():
+    analyze_it()
+
+if __name__ == "__main__":
+    main()
+
+
+### stats model predict vs numpy predict
 	# raw_data.dropna(inplace=True) # drop the na rows
 	# # clean fico range and get score 
 	# raw_data['FICO.Score'] = map(lambda x: int(x.split('-')[0]), raw_data['FICO.Range']) # clean fico range and get score #ask Kyle why this runs so slow
@@ -36,26 +62,4 @@ def clean_data(raw_data):
 	# # raw_data['OWN'] = [own(desc) for index, desc in raw_data['Home.Ownership'].iteritems()]
 	# raw_data['constant']= 1
 
-	return raw_data
-
-# def enhance_data(df):
-# 	df['annual_inc'] = df['Monthly.Income'] * 12
-# 	return df
-
-
-def analyze_it():
-	df = get_data()
-	# df = clean_data(df)
-	# df = enhance_data(df)
-
-	return(df)
-
-	   
-def main():
-    analyze_it()
-
-if __name__ == "__main__":
-    main()
-
-
-### stats model predict vs numpy predict
+	# df['annual_inc'] = df['Monthly.Income'] * 12
