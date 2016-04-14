@@ -1,0 +1,23 @@
+dot product 1 iteration
+1 time slice later
+state depends on more than one time slice ago
+
+# SQL EXAMPLE
+
+SELECT title, city, avg(salary), avg(years_experience)
+from employees
+GROUP BY title, city
+
+# GROUP BY EXAMPLE
+
+df2 = df.groupby(['title', 'city'])[['salary', 'years_experience']].mean()
+
+
+gbo = df.groupby(['title', 'city'])[['salary', 'years_experience']]
+
+df2 = gbo.mean()
+df3 = gbo.max()
+
+insert sql statement look out for dangling , in the tuple passed in.
+
+time.sleep

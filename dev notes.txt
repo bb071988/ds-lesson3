@@ -1,0 +1,6 @@
+dev notes
+
+to login to posgtresdb generic
+psql -d mydb -U myuser
+for this pc
+C:\Program Files\PostgreSQL\9.5\bin> .\psql -d getting_started -U postgres
